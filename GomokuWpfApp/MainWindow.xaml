@@ -1,0 +1,67 @@
+<Window x:Class="GomokuWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="五子棋" Height="720" Width="720" MinHeight="520" MinWidth="520"
+        Background="#FFF7EAD7">
+    <Window.Resources>
+        <SolidColorBrush x:Key="BoardCellBackgroundBrush" Color="#FFE3C78D"/>
+        <SolidColorBrush x:Key="BoardCellHighlightBrush" Color="#FFF2DB9C"/>
+        <SolidColorBrush x:Key="BoardCellBorderBrush" Color="#CC8C6239"/>
+        <Style x:Key="BoardCellButtonStyle" TargetType="Button">
+            <Setter Property="Width" Value="40"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="Background" Value="{StaticResource BoardCellBackgroundBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource BoardCellBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="Focusable" Value="False"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Margin="16">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal" Margin="0,0,0,16" VerticalAlignment="Center">
+            <TextBlock x:Name="StatusTextBlock"
+                       FontSize="18"
+                       FontWeight="SemiBold"
+                       Foreground="#FF3A2F19"
+                       VerticalAlignment="Center"/>
+            <Button Content="重新開始"
+                    Click="NewGameButton_Click"
+                    Margin="24,0,0,0"
+                    Padding="12,6"
+                    FontSize="14"/>
+        </StackPanel>
+
+        <Border Grid.Row="1"
+                BorderBrush="{StaticResource BoardCellBorderBrush}"
+                BorderThickness="2"
+                Background="#FFD8B56A"
+                CornerRadius="8"
+                Padding="8">
+            <UniformGrid x:Name="BoardGrid"
+                         Rows="15"
+                         Columns="15"
+                         Margin="4"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center"/>
+        </Border>
+    </Grid>
+</Window>
